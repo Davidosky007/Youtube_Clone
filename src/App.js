@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Navbar from "./components/layout/Navbar";
+import AppSidebar from "./components/layout/AppSidebar";
 
 class App extends Component {
   render() {
@@ -8,8 +8,9 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Fragment>
-            <Navbar />
-            <Route exact path="/" render={() => <p>home</p>} />
+            <AppSidebar>
+              <Route exact path="/" render={() => <p>home</p>} />
+            </AppSidebar>
           </Fragment>
         </BrowserRouter>
       </div>
