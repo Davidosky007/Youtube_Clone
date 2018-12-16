@@ -21,7 +21,7 @@ export default class FirebaseAuthProvider extends Component {
       const usersRef = firebaseConnection.database().ref("users");
 
       usersRef.on("value", snapshot => {
-        if (!snapshot.hasChild(user.uid)) {
+        if (user && !snapshot.hasChild(user.uid)) {
           usersRef.child(user.uid).set({
             username: user.displayName,
             email: user.email,
@@ -36,7 +36,7 @@ export default class FirebaseAuthProvider extends Component {
         this.setState({
           authStatusReported: true,
           isUserSignedIn: !!user,
-          user: snapshot.child(user.uid).val()
+          user: user ? snapshot.child(user.uid).val() : null
         });
       });
     });

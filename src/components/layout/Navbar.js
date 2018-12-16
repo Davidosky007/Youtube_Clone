@@ -12,7 +12,12 @@ import {
 import styles from "./Navbar.module.css";
 import SearchBar from "./SearchBar";
 
-const Navbar = ({ handleSocialLogin, handleSidebarClick, user }) => {
+const Navbar = ({
+  handleSignOut,
+  handleSocialLogin,
+  handleSidebarClick,
+  user
+}) => {
   return (
     <nav className={styles["Youtube__Navbar"]}>
       <div className={styles["Youtube__Navbar--brand"]}>
@@ -76,6 +81,10 @@ const Navbar = ({ handleSocialLogin, handleSidebarClick, user }) => {
               <Dropdown.Item>
                 <Icon name="user" color="grey" />
                 My channel
+              </Dropdown.Item>
+              <Dropdown.Item onClick={handleSignOut}>
+                <Icon name="sign-out" color="grey" />
+                Sign out
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

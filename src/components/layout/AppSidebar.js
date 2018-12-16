@@ -21,6 +21,16 @@ export default class AppSidebar extends Component {
       });
   };
 
+  handleSignOut = e => {
+    firebaseConnection
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("Sign out succesfully");
+      })
+      .catch(err => console.error("Error on sign out: ", err));
+  };
+
   handleSidebarClick = e => {
     this.setState({ sidebarVisible: !this.state.sidebarVisible });
   };
@@ -39,15 +49,15 @@ export default class AppSidebar extends Component {
         >
           <Menu.Item as="a">
             <Icon name="home" />
+            Home
           </Menu.Item>
           <Menu.Item as="a">
-            <Icon name="home" />
+            <Icon name="fire" />
+            Trends
           </Menu.Item>
           <Menu.Item as="a">
-            <Icon name="home" />
-          </Menu.Item>
-          <Menu.Item as="a">
-            <Icon name="home" />
+            <Icon name="video play" />
+            Subscriptions
           </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher dimmed={this.state.sidebarVisible}>
@@ -55,6 +65,7 @@ export default class AppSidebar extends Component {
             {({ user }) => (
               <Navbar
                 user={user}
+                handleSignOut={this.handleSignOut}
                 handleSocialLogin={this.handleSocialLogin}
                 handleSidebarClick={this.handleSidebarClick}
               />
