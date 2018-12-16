@@ -1,11 +1,25 @@
 import React, { Component } from "react";
 import { Icon, Sidebar, Menu } from "semantic-ui-react";
 import Navbar from "./Navbar";
+import firebaseConnection, { firebase } from "../../configuration/firebase";
+import { FirebaseContext } from "../Firebase/firebaseContext";
 
 export default class AppSidebar extends Component {
   state = { sidebarVisible: false };
 
   componentDidMount() {}
+
+  handleSocialLogin = e => {
+    firebaseConnection
+      .auth()
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   handleSidebarClick = e => {
     this.setState({ sidebarVisible: !this.state.sidebarVisible });
@@ -18,7 +32,6 @@ export default class AppSidebar extends Component {
           as={Menu}
           animation="overlay"
           icon="labeled"
-          inverted
           onHide={this.handleSidebarClick}
           vertical
           visible={this.state.sidebarVisible}
@@ -38,7 +51,15 @@ export default class AppSidebar extends Component {
           </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher dimmed={this.state.sidebarVisible}>
-          <Navbar handleSidebarClick={this.handleSidebarClick} />
+          <FirebaseContext.Consumer>
+            {({ user }) => (
+              <Navbar
+                user={user}
+                handleSocialLogin={this.handleSocialLogin}
+                handleSidebarClick={this.handleSidebarClick}
+              />
+            )}
+          </FirebaseContext.Consumer>
           {this.props.children}
         </Sidebar.Pusher>
       </Sidebar.Pushable>
