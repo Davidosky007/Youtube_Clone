@@ -21,3 +21,25 @@ code {
 .App {
   height: 100vh;
 }
+
+.Notification {
+  position: relative;
+}
+.Notification::after {
+  font-family: Arial;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #fff;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  padding: 5px 8px;
+  line-height: 100%;
+  border: 2px #fff solid;
+  border-radius: 60px;
+  background: #cc1a23;
+  content: attr(data-count);
+  opacity: 1;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+}

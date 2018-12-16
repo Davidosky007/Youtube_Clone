@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Icon, Sidebar, Menu } from "semantic-ui-react";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import { firebase, firebaseModules } from "../../configuration/firebase";
 import { FirebaseContext } from "../Firebase/firebaseContext";
 

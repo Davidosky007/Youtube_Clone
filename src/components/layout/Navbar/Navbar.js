@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import styles from "./Navbar.module.css";
 import SearchBar from "./SearchBar";
+import RightIcons from "./RightIcons";
 
 const Navbar = ({
   handleSignOut,
@@ -34,23 +35,12 @@ const Navbar = ({
         <SearchBar />
       </div>
       <div className={styles["Youtube__Navbar__IconGroup"]}>
-        <Popup
-          position="bottom center"
-          trigger={<Icon name="video" color="grey" size="large" />}
-          content="Create new video or publication"
-          inverted
-        />
-        <Popup
-          position="bottom center"
-          trigger={<Icon name="mail" color="grey" size="large" />}
-          content="Messages"
-          inverted
-        />
-        <Popup
-          position="bottom center"
-          trigger={<Icon name="bell" color="grey" size="large" />}
-          content="Notifications"
-          inverted
+        <RightIcons
+          iconsData={[
+            { name: "video", description: "Create new video or publication" },
+            { name: "mail", description: "Messages" },
+            { name: "bell", description: "Notifications", count: 1 }
+          ]}
         />
 
         {user ? (
