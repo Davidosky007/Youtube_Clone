@@ -14,12 +14,16 @@
 }
 
 .Youtube__Navbar--brand {
+  color: black;
+}
+
+.Youtube__Navbar--brand .Youtube__Navbar--logo {
+  margin-left: 1.2em;
 }
 
 .Youtube__Navbar__SearchBar {
   width: 100%;
   max-width: 589px;
-  margin: 0 40px;
 }
 
 .Youtube__Navbar__IconGroup {
