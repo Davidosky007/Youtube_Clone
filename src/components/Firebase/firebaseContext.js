@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import firebaseConnection from "../../configuration/firebase";
+import { firebaseModules } from "../../configuration/firebase";
+
+const { database, auth } = firebaseModules;
 
 const defaultFirebaseContext = {
   authStatusReported: false,
@@ -17,8 +19,8 @@ export default class FirebaseAuthProvider extends Component {
   state = defaultFirebaseContext;
 
   componentDidMount() {
-    firebaseConnection.auth().onAuthStateChanged(user => {
-      const usersRef = firebaseConnection.database().ref("users");
+    auth.onAuthStateChanged(user => {
+      const usersRef = database.ref("users");
 
       usersRef.on("value", snapshot => {
         if (user && !snapshot.hasChild(user.uid)) {
