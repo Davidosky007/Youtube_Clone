@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Icon, Sidebar, Menu } from "semantic-ui-react";
-import Navbar from "./Navbar";
-import firebaseConnection, { firebase } from "../../configuration/firebase";
+import Navbar from "./Navbar/Navbar";
+import { firebase, firebaseModules } from "../../configuration/firebase";
 import { FirebaseContext } from "../Firebase/firebaseContext";
+
+const { auth } = firebaseModules;
 
 export default class AppSidebar extends Component {
   state = { sidebarVisible: false };
@@ -10,8 +12,7 @@ export default class AppSidebar extends Component {
   componentDidMount() {}
 
   handleSocialLogin = e => {
-    firebaseConnection
-      .auth()
+    auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(result => {
         console.log(result);
@@ -22,8 +23,7 @@ export default class AppSidebar extends Component {
   };
 
   handleSignOut = e => {
-    firebaseConnection
-      .auth()
+    auth
       .signOut()
       .then(() => {
         console.log("Sign out succesfully");
@@ -53,7 +53,7 @@ export default class AppSidebar extends Component {
           </Menu.Item>
           <Menu.Item as="a">
             <Icon name="fire" />
-            Trends
+            Trending
           </Menu.Item>
           <Menu.Item as="a">
             <Icon name="video play" />
