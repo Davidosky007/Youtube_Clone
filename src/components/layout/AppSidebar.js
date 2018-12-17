@@ -53,7 +53,7 @@ export default class AppSidebar extends Component {
           </Menu.Item>
           <Menu.Item as="a">
             <Icon name="fire" />
-            Trends
+            Trending
           </Menu.Item>
           <Menu.Item as="a">
             <Icon name="video play" />

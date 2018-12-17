@@ -6,12 +6,11 @@ import {
   Image,
   Button,
   Comment,
-  Message,
-  Popup
+  Message
 } from "semantic-ui-react";
 import styles from "./Navbar.module.css";
 import SearchBar from "./SearchBar";
-import RightIcons from "./RightIcons";
+import NavbarIcons from "./NavbarIcons";
 
 const Navbar = ({
   handleSignOut,
@@ -35,11 +34,11 @@ const Navbar = ({
         <SearchBar />
       </div>
       <div className={styles["Youtube__Navbar__IconGroup"]}>
-        <RightIcons
+        <NavbarIcons
           iconsData={[
             { name: "video", description: "Create new video or publication" },
             { name: "mail", description: "Messages" },
-            { name: "bell", description: "Notifications", count: 1 }
+            { name: "bell", description: "Notifications", count: 0 }
           ]}
         />
 
