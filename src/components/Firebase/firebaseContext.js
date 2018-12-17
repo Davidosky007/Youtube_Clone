@@ -24,8 +24,8 @@ export default class FirebaseAuthProvider extends Component {
       if (user) {
         const usersRef = database.ref("users");
         const channelsRef = database.ref("channels");
-
-        usersRef.on("value", snapshot => {
+        const videosRef = database.ref("videos");
+        usersRef.once("value", snapshot => {
           if (!snapshot.hasChild(user.uid)) {
             usersRef.child(user.uid).set({
               username: user.displayName,
@@ -44,7 +44,7 @@ export default class FirebaseAuthProvider extends Component {
           });
         });
 
-        channelsRef.on("value", snapshot => {
+        channelsRef.once("value", snapshot => {
           if (!snapshot.hasChild(user.uid)) {
             axios
               .get("http://ip-api.com/json")
@@ -61,6 +61,25 @@ export default class FirebaseAuthProvider extends Component {
                 });
               })
               .catch(err => console.error(err));
+          }
+        });
+
+        videosRef.once("value", snapshot => {
+          for (let index = 0; index < 21; index++) {
+            videosRef.child(index + "pene").set({
+              thumbnail: "https://i.ytimg.com/vi/5Umge0eM1Hw/maxresdefault.jpg",
+              title: "",
+              user: "",
+              channel: "",
+              visualizations: 0,
+              createdAt: new Date().getTime(), //TODO - THIS IS TEMPORAL
+              duration: 0,
+              likes: 0,
+              dislikes: 0,
+              description: "",
+              category: "",
+              comments: ""
+            });
           }
         });
       }

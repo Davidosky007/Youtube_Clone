@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Icon, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Icon, Button, Sticky } from "semantic-ui-react";
 import styles from "./Navbar.module.css";
 import SearchBar from "./SearchBar";
 import NavbarIcons from "./NavbarIcons";
@@ -22,7 +23,9 @@ const Navbar = ({
           name="bars"
           size="large"
         />
-        <span className={styles["Youtube__Navbar--logo"]}>logo here</span>
+        <Link to="/">
+          <span className={styles["Youtube__Navbar--logo"]}>logo here</span>
+        </Link>
       </div>
       <div className={styles["Youtube__Navbar__SearchBar"]}>
         <SearchBar />

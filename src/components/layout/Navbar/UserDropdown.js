@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Dropdown, Comment, Icon, Image, Message } from "semantic-ui-react";
 
 const UserDropdown = ({ user, handleSignOut }) => {
@@ -30,7 +31,7 @@ const UserDropdown = ({ user, handleSignOut }) => {
         </Dropdown.Item>
         <Dropdown.Item>
           <Icon name="user" color="grey" />
-          My channel
+          <Link to={`/channel/${user.username}`}>My channel</Link>
         </Dropdown.Item>
         <Dropdown.Item onClick={handleSignOut}>
           <Icon name="sign-out" color="grey" />

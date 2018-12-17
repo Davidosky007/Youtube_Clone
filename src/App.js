@@ -4,6 +4,8 @@ import AppSidebar from "./components/layout/AppSidebar";
 import FirebaseAuthProvider from "./components/Firebase/firebaseContext";
 import Home from "./components/Home/Home";
 import NotFound from "./components/Errors/NotFound";
+import UserChannel from "./components/UserChannel/UserChannel";
+import VideoDetail from "./components/Home/VideoDetail";
 
 class App extends Component {
   render() {
@@ -14,6 +16,12 @@ class App extends Component {
             <AppSidebar>
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route
+                  exact
+                  path="/channel/:username"
+                  component={UserChannel}
+                />
+                <Route exact path="/video/:videoId" component={VideoDetail} />
                 <Route component={NotFound} />
               </Switch>
             </AppSidebar>

@@ -1,17 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Image, List, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const VideoItem = ({ video, styles }) => {
   return (
     <div key={video.id} className={styles["Home__Container__Videos--video"]}>
-      <Link to="/video">
+      <Link to={`/video/${video.key}`}>
         <Image
           fluid
           verticalAlign="middle"
           className={styles["Home__Container__Videos--thumbnail"]}
-          src={video.urls.small}
+          src={video.thumbnail} //TODO - COGER URL DE BASE DATOS
         />
       </Link>
 
@@ -20,7 +20,7 @@ const VideoItem = ({ video, styles }) => {
           className={styles["Home__Container__Videos--video-description"]}
           as="h3"
         >
-          <Link to="/video">titulito del video - 900 subs</Link>
+          <Link to={`/video/${video.key}`}>{video.title}</Link>
         </Header>
         <List
           className={
@@ -39,21 +39,19 @@ const VideoItem = ({ video, styles }) => {
               styles["Home__Container__Videos--video-description-content--item"]
             }
           >
-            593 mil visualizaciones
+            {video.visualizations} visualizations
           </List.Item>
           <List.Item
             className={
               styles["Home__Container__Videos--video-description-content--item"]
             }
           >
-            Hace 6 dias
+            {moment(video.createdAt).fromNow()}
           </List.Item>
         </List>
       </section>
     </div>
   );
 };
-
-VideoItem.propTypes = {};
 
 export default VideoItem;

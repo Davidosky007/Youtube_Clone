@@ -6,7 +6,7 @@ const VideoList = ({ videos, styles }) => {
   return (
     <div className={styles["Home__Container__Videos"]}>
       {videos.map(video => (
-        <VideoItem key={video.id} video={video} styles={styles} />
+        <VideoItem key={video.key} video={video} styles={styles} />
       ))}
     </div>
   );
