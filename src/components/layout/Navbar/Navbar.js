@@ -5,6 +5,7 @@ import styles from "./Navbar.module.css";
 import SearchBar from "./SearchBar";
 import NavbarIcons from "./NavbarIcons";
 import UserDropdown from "./UserDropdown";
+
 const Navbar = ({
   handleSignOut,
   handleSocialLogin,
