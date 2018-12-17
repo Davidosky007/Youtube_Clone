@@ -1,0 +1,15 @@
+.Home__Container {
+  margin-top: 2em;
+}
+
+.Home__Container__Videos {
+  display: grid;
+  grid-gap: 15px;
+  align-items: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 210px));
+}
+
+.Home__Container__Videos--thumbnail {
+  max-height: 118px;
+  max-width: 100%;
+}

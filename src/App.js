@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AppSidebar from "./components/layout/AppSidebar";
 import FirebaseAuthProvider from "./components/Firebase/firebaseContext";
+import Home from "./components/Home/Home";
+import NotFound from "./components/Errors/NotFound";
 
 class App extends Component {
   render() {
@@ -10,7 +12,10 @@ class App extends Component {
         <BrowserRouter>
           <FirebaseAuthProvider>
             <AppSidebar>
-              <Route exact path="/" render={() => <p>home</p>} />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route component={NotFound} />
+              </Switch>
             </AppSidebar>
           </FirebaseAuthProvider>
         </BrowserRouter>

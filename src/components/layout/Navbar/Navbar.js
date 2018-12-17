@@ -1,17 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Icon,
-  Dropdown,
-  Image,
-  Button,
-  Comment,
-  Message
-} from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 import styles from "./Navbar.module.css";
 import SearchBar from "./SearchBar";
 import NavbarIcons from "./NavbarIcons";
-
+import UserDropdown from "./UserDropdown";
 const Navbar = ({
   handleSignOut,
   handleSocialLogin,
@@ -43,40 +36,7 @@ const Navbar = ({
         />
 
         {user ? (
-          <Dropdown
-            pointing="top right"
-            trigger={
-              <Image
-                src={user.avatar}
-                alt="avatar"
-                size="mini"
-                circular
-                verticalAlign="middle"
-              />
-            }
-          >
-            <Dropdown.Menu>
-              <Dropdown.Item as={Message}>
-                <Comment.Group style={{ backgroundColor: "hsl(0%,0%,93.3%)" }}>
-                  <Comment>
-                    <Comment.Avatar src={user.avatar} />
-                    <Comment.Content>
-                      <Comment.Author as="a">{user.username}</Comment.Author>
-                      <Comment.Text>{user.email}</Comment.Text>
-                    </Comment.Content>
-                  </Comment>
-                </Comment.Group>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <Icon name="user" color="grey" />
-                My channel
-              </Dropdown.Item>
-              <Dropdown.Item onClick={handleSignOut}>
-                <Icon name="sign-out" color="grey" />
-                Sign out
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <UserDropdown user={user} handleSignOut={handleSignOut} />
         ) : (
           <Button fluid color="google plus" onClick={handleSocialLogin}>
             <Icon name="google" />
@@ -90,7 +50,14 @@ const Navbar = ({
 
 Navbar.propTypes = {
   handleSocialLogin: PropTypes.func.isRequired,
-  handleSidebarClick: PropTypes.func.isRequired
+  handleSignOut: PropTypes.func.isRequired,
+  handleSidebarClick: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    email: PropTypes.string,
+    avatar: PropTypes.string,
+    public: PropTypes.number
+  })
 };
 
 export default Navbar;
